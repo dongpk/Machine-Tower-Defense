@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         // agent.SetDestination(Waypoint.position);
+        Waypoint = FindFirstObjectByType<WayPontManager>().GetWaypoints(); 
     }
     void Update()
     {
