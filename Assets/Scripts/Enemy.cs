@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,6 +15,8 @@ public class Enemy : MonoBehaviour
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        // agent.updatePosition = false; // Disable automatic position updates
+        agent.avoidancePriority = Mathf.RoundToInt (agent.speed * 10);
     }
 
     void Start()
