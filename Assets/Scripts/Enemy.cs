@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, turnSpeed * Time.deltaTime);
     }
 
-
+  
     private Vector3 GetNextWaypoint()
     {
         if (waypointIndex >= Waypoint.Length)
