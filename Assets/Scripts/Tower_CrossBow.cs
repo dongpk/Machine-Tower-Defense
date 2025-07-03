@@ -5,6 +5,7 @@ public class Tower_CrossBow : Tower
     private CrossBow_Visual visual;
 
     [Header("Crossbow Details")]
+    [SerializeField] private int damage;
     [SerializeField] protected Transform gunPoint;
 
     protected override void Awake()
@@ -26,10 +27,15 @@ public class Tower_CrossBow : Tower
         if (Physics.Raycast(gunPoint.position, directionToEnemy, out RaycastHit hitInfo, Mathf.Infinity))
         {
             towerHead.forward = directionToEnemy; // Quay đầu tháp về phía kẻ thù
-            Debug.DrawLine(gunPoint.position, hitInfo.point);
+            // Debug.DrawLine(gunPoint.position, hitInfo.point);
 
             visual.PlayAttackVFX(gunPoint.position, hitInfo.point);
             visual.PlayReloadVFX(attackCooldown);
+            IDamagable damagable = hitInfo.transform.GetComponent<IDamagable>();
+            if(damagable != null)
+            {
+                damagable.TakeDamage(damage);
+            }
         }
     }
 }
