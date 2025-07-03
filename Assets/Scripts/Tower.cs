@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -61,20 +62,39 @@ public class Tower : MonoBehaviour
 
     protected Transform FindRandomEnemyWithinRange()
     {
-        List<Transform> possibleTargets = new List<Transform>();
+        List<Enemy> possibleTargets = new List<Enemy>();
         Collider[] enemiesAround = Physics.OverlapSphere(transform.position, attackRange, whatIsEnemy);
 
         foreach (Collider enemy in enemiesAround)
         {
-            possibleTargets.Add(enemy.transform);
+            Enemy newEnemy = enemy.GetComponent<Enemy>();
+         
+            possibleTargets.Add(newEnemy);
+        }
+    
+        Enemy newTarget = getMostAdvancedEnemy(possibleTargets);
+        if (newTarget != null)
+        {
+            return newTarget.transform; // Return the most advanced enemy's transform
+        }
+        return null; // No valid target found 
+        
+    }
+    private Enemy getMostAdvancedEnemy(List<Enemy> targets)
+    {
+        Enemy mostAdvancedEnemy = null;
+        float minRemainingDistance = float.MaxValue;
+        foreach (Enemy enemy in targets)
+        {
+            float remainingDistance = enemy.DistanceToFinishLine();
+            if(remainingDistance < minRemainingDistance)
+            {
+                minRemainingDistance = remainingDistance;
+                mostAdvancedEnemy = enemy;
+            }
         }
 
-        int randomIndex = Random.Range(0, possibleTargets.Count);
-
-        if (possibleTargets.Count <= 0)
-            return null;
-
-        return possibleTargets[randomIndex];
+        return mostAdvancedEnemy;      
     }
     public void EnableRotion(bool enable)
     {
