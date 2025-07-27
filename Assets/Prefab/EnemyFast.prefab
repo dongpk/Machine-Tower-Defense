@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8639604311727262096}
   - component: {fileID: 3353300766992482652}
   - component: {fileID: 3914369121669602793}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fast_enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 4448218929591908491}
   - component: {fileID: 3589478137521050242}
   - component: {fileID: 5177466315734948990}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fast_enemy_wheels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9068152469169658839}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fast_enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,6 +221,37 @@ Transform:
   - {fileID: 8761382040929969325}
   m_Father: {fileID: 5066460235043669082}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4460115811304405419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8836893281580520239}
+  m_Layer: 7
+  m_Name: CenterPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8836893281580520239
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4460115811304405419}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.431, z: 0.058}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5066460235043669082}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8987131915616923958
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +263,7 @@ GameObject:
   - component: {fileID: 2346953475277241518}
   - component: {fileID: 9215489561178932645}
   - component: {fileID: 3290151950295408403}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fast_enemy_emission
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +351,7 @@ GameObject:
   - component: {fileID: 2366934814862214073}
   - component: {fileID: 7648117263476386764}
   - component: {fileID: 6552186927912814692}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyFast
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -341,6 +372,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9068152469169658839}
+  - {fileID: 8836893281580520239}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &166867614576440636
@@ -355,6 +387,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 566f1b28c4ed6ea4c8198d1e15bea385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  centerPoint: {fileID: 8836893281580520239}
+  enemyType: 1
+  healthPoints: 4
   turnSpeed: 10
   stoppingDistance: 0.5
   Waypoint:
@@ -375,8 +410,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 9056071214767684081}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.15
-  m_Speed: 3.5
+  m_Radius: 0.13
+  m_Speed: 2.75
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -407,8 +442,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.24, y: 0.63, z: 0.29}
-  m_Center: {x: 0, y: 0.31, z: 0}
+  m_Size: {x: 0.19080126, y: 0.52224576, z: 0.29}
+  m_Center: {x: -0.00062566996, y: 0.2561229, z: 0}
 --- !u!54 &6552186927912814692
 Rigidbody:
   m_ObjectHideFlags: 0
