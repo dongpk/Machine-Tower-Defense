@@ -2,11 +2,19 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour,IDamagable
+public enum EnemyType
 {
+    Basic,
+    Fast,
+    None
+}
+public class Enemy : MonoBehaviour, IDamagable
+{
+    [SerializeField] private Transform centerPoint;
+    [SerializeField] private EnemyType enemyType;
     private NavMeshAgent agent;
     public int healthPoints = 4;
-    
+
     [Header("Movement Settings")]
     [SerializeField] private float turnSpeed = 10f;
     [SerializeField] private float stoppingDistance = 0.5f;
@@ -14,7 +22,7 @@ public class Enemy : MonoBehaviour,IDamagable
 
     [Space]
     private float totalDistance;
-   
+
 
     private int waypointIndex;
 
@@ -23,7 +31,7 @@ public class Enemy : MonoBehaviour,IDamagable
     {
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false; // Disable automatic position updates
-        agent.avoidancePriority = Mathf.RoundToInt (agent.speed * 10);
+        agent.avoidancePriority = Mathf.RoundToInt(agent.speed * 10);
     }
 
     void Start()
@@ -34,7 +42,7 @@ public class Enemy : MonoBehaviour,IDamagable
         CollectTotalDistance();
 
     }
-    public float DistanceToFinishLine()=>totalDistance + agent.remainingDistance;
+    public float DistanceToFinishLine() => totalDistance + agent.remainingDistance;
     private void CollectTotalDistance()
     {
         for (int i = 0; i < Waypoint.Length - 1; i++)
@@ -45,7 +53,7 @@ public class Enemy : MonoBehaviour,IDamagable
         }
     }
 
-    
+
 
     void Update()
     {
@@ -54,8 +62,8 @@ public class Enemy : MonoBehaviour,IDamagable
         if (agent.remainingDistance < 0.5f)
         {
             agent.SetDestination(GetNextWaypoint());
-
-        } 
+    
+        }
     }
     private void FaceTarget(Vector3 newTarget)
     {
@@ -68,7 +76,7 @@ public class Enemy : MonoBehaviour,IDamagable
         transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, turnSpeed * Time.deltaTime);
     }
 
-  
+
     private Vector3 GetNextWaypoint()
     {
         if (waypointIndex >= Waypoint.Length)
@@ -80,7 +88,7 @@ public class Enemy : MonoBehaviour,IDamagable
         if (waypointIndex > 0)
         {
             float Distance = Vector3.Distance(Waypoint[waypointIndex].position, Waypoint[waypointIndex - 1].position);
-            totalDistance -= Distance; 
+            totalDistance -= Distance;
         }
 
 
@@ -96,4 +104,8 @@ public class Enemy : MonoBehaviour,IDamagable
             Destroy(gameObject);
         }
     }
+
+    public Vector3 CenterPoint() => centerPoint.position;
+    public EnemyType GetEnemyType() => enemyType;
+
 }
