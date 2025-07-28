@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6831851247123837510}
+  - component: {fileID: 2020743787583829421}
   - component: {fileID: 8259019498320602727}
   - component: {fileID: 2082104131817942389}
   - component: {fileID: 3968340214691575677}
@@ -36,6 +37,18 @@ Transform:
   - {fileID: 987785785771483515}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2020743787583829421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4228856934224415542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49866b05017771845b35c5f11feb8e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &8259019498320602727
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -246,7 +259,7 @@ Transform:
   m_GameObject: {fileID: 7175095532249371522}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

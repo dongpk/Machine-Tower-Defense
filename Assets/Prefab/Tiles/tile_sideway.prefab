@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2374958869505330132}
+  - component: {fileID: 5026740872436791528}
   - component: {fileID: 1513306733020341052}
   - component: {fileID: 4467421426602855838}
   - component: {fileID: 3275789589333970007}
@@ -27,14 +28,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2249234908381366167}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.32725, y: 0, z: -4}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 9174363088809658134}
+  - {fileID: 8456708706404453244}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5026740872436791528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2249234908381366167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49866b05017771845b35c5f11feb8e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &1513306733020341052
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -109,7 +122,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 1, z: 1}
   m_Center: {x: 0.25, y: 0, z: 0}
---- !u!1 &5320204871015388093
+--- !u!1 &2366908134332114196
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,10 +130,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9174363088809658134}
-  - component: {fileID: 8399226116652048306}
-  - component: {fileID: 2238251426045441296}
-  - component: {fileID: 6614317132865209767}
+  - component: {fileID: 8456708706404453244}
+  - component: {fileID: 2998336735471360706}
+  - component: {fileID: 1518631176794804727}
+  - component: {fileID: 1567083457834597925}
+  - component: {fileID: 3070156181973103050}
   m_Layer: 6
   m_Name: tile_sideway_road
   m_TagString: Untagged
@@ -128,13 +142,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9174363088809658134
+--- !u!4 &8456708706404453244
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5320204871015388093}
+  m_GameObject: {fileID: 2366908134332114196}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.5, y: -0.1, z: 0}
@@ -143,21 +157,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2374958869505330132}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8399226116652048306
+--- !u!33 &2998336735471360706
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5320204871015388093}
+  m_GameObject: {fileID: 2366908134332114196}
   m_Mesh: {fileID: -1874256052159017079, guid: e4f015fced1635b4faf93701b2d56f47, type: 3}
---- !u!23 &2238251426045441296
+--- !u!23 &1518631176794804727
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5320204871015388093}
+  m_GameObject: {fileID: 2366908134332114196}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -196,13 +210,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6614317132865209767
+--- !u!65 &1567083457834597925
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5320204871015388093}
+  m_GameObject: {fileID: 2366908134332114196}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -217,3 +231,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 1, z: 1}
   m_Center: {x: 0.25, y: 0, z: 0}
+--- !u!114 &3070156181973103050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2366908134332114196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49866b05017771845b35c5f11feb8e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
