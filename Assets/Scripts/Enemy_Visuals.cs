@@ -20,6 +20,7 @@ public class Enemy_Visuals : MonoBehaviour
         {
             Quaternion targetRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
             visuals.rotation = Quaternion.Slerp(visuals.rotation, targetRotation, verticalRotationSpeed * Time.deltaTime);
+
         }
     }
 }
