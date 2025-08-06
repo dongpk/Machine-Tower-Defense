@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
 
     [Header("Movement Details")]
     [SerializeField] private float moveSpeed = 120f;
-    private float mouseMovementSpeed = 5f;
+    [SerializeField] private float mouseMovementSpeed = 5f;
     [SerializeField] private float edgeMovementSpeed = 50f;
     [SerializeField] private float edgeTreshHold = 10f;
     private float screenWidth;
@@ -61,6 +61,9 @@ public class CameraController : MonoBehaviour
     }
     public bool EnableCameraControl(bool enable) => canControll = enable;
     public float AdjustPitchValue(float value) => pitch = value;
+    public  float AdjustKeyboardSensitivity(float value)=> moveSpeed = value;
+    public float AdjustMouseSensitivity(float value) => mouseMovementSpeed = value;
+
 
 
     private void HandleZoom()
