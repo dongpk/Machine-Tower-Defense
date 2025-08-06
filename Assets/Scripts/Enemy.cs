@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -11,11 +11,12 @@ public enum EnemyType
 }
 public class Enemy : MonoBehaviour, IDamagable
 {
+    private GameManager gameManager;
     private EnemyPortal myPortal;
+    private NavMeshAgent agent;
 
     [SerializeField] private Transform centerPoint;
     [SerializeField] private EnemyType enemyType;
-    private NavMeshAgent agent;
     public int healthPoints = 4;
 
     [Header("Movement Settings")]
@@ -35,6 +36,7 @@ public class Enemy : MonoBehaviour, IDamagable
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false; // Disable automatic position updates
         agent.avoidancePriority = Mathf.RoundToInt(agent.speed * 10);
+        gameManager = FindFirstObjectByType<GameManager>();
     }
 
 
@@ -138,11 +140,14 @@ public class Enemy : MonoBehaviour, IDamagable
         }
     }
     private void Die()
+    {        
+        myPortal.RemoveActiveEnemy(gameObject);      
+        gameManager.UpdateCurrency(1);
+        Destroy(gameObject);
+    }
+    public void DestroyEnemy()
     {
-        if(myPortal.GetAcTiveEnemies().Contains(gameObject))
-        {
-            myPortal.RemoveActiveEnemy(gameObject);
-        }
+        myPortal.RemoveActiveEnemy(gameObject);
         Destroy(gameObject);
     }
     public Vector3 CenterPoint() => centerPoint.position;
