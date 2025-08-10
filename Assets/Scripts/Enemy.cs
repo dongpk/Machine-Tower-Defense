@@ -59,7 +59,16 @@ public class Enemy : MonoBehaviour, IDamagable
         
     }
 
-    public float DistanceToFinishLine() => totalDistance + agent.remainingDistance;
+    public float DistanceToFinishLine()
+    {
+        if (!agent.isOnNavMesh || !agent.isActiveAndEnabled || !agent.hasPath)
+        {
+            // Return only the total static distance if agent is not valid
+            return totalDistance;
+        }
+
+        return totalDistance + agent.remainingDistance;
+    }
     private void CollectTotalDistance()
     {
         for (int i = 0; i < myWaypoints.Count - 1; i++)
@@ -104,7 +113,7 @@ public class Enemy : MonoBehaviour, IDamagable
         Vector3 directionToTarget = newTarget - transform.position;
         directionToTarget.y = 0;
 
-        Quaternion newRotation = Quaternion.LookRotation(directionToTarget);
+        Quaternion newRotation = Quaternion.LookRotation(directionToTarget); 
 
         // Smoothly rotate towards the target
         transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, turnSpeed * Time.deltaTime);
