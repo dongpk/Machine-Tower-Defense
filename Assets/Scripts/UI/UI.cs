@@ -1,22 +1,28 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
+    [SerializeField] private Image fadeImageUI;
     [SerializeField] private GameObject[] uiElements;
 
-    private UI_Settings uiSettings;
-    private UI_MainMenu uiMainMenu;
-    private UI_InGame uiInGame;
+    private UI_Animator uiAnimator;
+    private UI_Settings settingsUI;
+    private UI_MainMenu mainMenuUI;
+    private UI_InGame ingameUI;
     private void Awake()
     {
-        uiSettings = GetComponentInChildren<UI_Settings>(true);
-        uiMainMenu = GetComponentInChildren<UI_MainMenu>(true);
-        uiInGame = GetComponentInChildren<UI_InGame>(true);
+        settingsUI = GetComponentInChildren<UI_Settings>(true);
+        mainMenuUI = GetComponentInChildren<UI_MainMenu>(true);
+        ingameUI = GetComponentInChildren<UI_InGame>(true);
+        uiAnimator = GetComponent<UI_Animator>();
 
-        SwitchTo(uiSettings.gameObject);
-        SwitchTo(uiMainMenu.gameObject);
-        SwitchTo(uiInGame.gameObject);
+        //ActivateFadeEffect(true); 
+
+        SwitchTo(settingsUI.gameObject);
+        //SwitchTo(mainMenuUI.gameObject);
+        SwitchTo(ingameUI.gameObject);
     }
     public void SwitchTo(GameObject uiToEnable)
     {
@@ -33,5 +39,16 @@ public class UI : MonoBehaviour
             EditorApplication.isPlaying = false;
         else
             Application.Quit();
+    }
+    public void ActivateFadeEffect(bool fadeIn)
+    {
+        if (fadeIn)
+        {
+            uiAnimator.ChangeColor(fadeImageUI, 0f, 2f);
+        }
+        else
+        {
+            uiAnimator.ChangeColor(fadeImageUI, 1f, 2f);
+        }
     }
 }
