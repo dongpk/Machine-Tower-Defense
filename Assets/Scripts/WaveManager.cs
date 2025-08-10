@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 [System.Serializable]
 public class WaveDetails
@@ -13,6 +12,8 @@ public class WaveDetails
 }
 public class WaveManager : MonoBehaviour
 {
+    private UI_InGame inGameUI;
+
     [SerializeField] private GridBuilder currentGrid;
     public bool waveCompleted;
     public float timeBetweenWaves = 10f;
@@ -34,6 +35,7 @@ public class WaveManager : MonoBehaviour
     private void Awake()
     {
         enemyPortals = new List<EnemyPortal>(FindObjectsOfType<EnemyPortal>());
+        inGameUI = FindFirstObjectByType<UI_InGame>(FindObjectsInactive.Include);
 
     }
     void Start()
@@ -49,16 +51,17 @@ public class WaveManager : MonoBehaviour
 
     private void HandleWaveCompletion()
     {
-        if(ReadyToCheck()==false)
+        if (ReadyToCheck() == false)
         {
             return; // Skip if not ready to check
         }
         if (waveCompleted == false && AllEnemiesDefeated())
         {
-            CheckForNewLevelLayout(); 
+            CheckForNewLevelLayout();
 
             waveCompleted = true;
             waveTimer = timeBetweenWaves;
+            inGameUI.EnableWaveTimer(true);
         }
     }
 
@@ -67,26 +70,33 @@ public class WaveManager : MonoBehaviour
         if (waveCompleted)
         {
             waveTimer -= Time.deltaTime;
+            inGameUI.UpdateWaveTimerUI(waveTimer);
             if (waveTimer <= 0f)
             {
+                inGameUI.EnableWaveTimer(false);
+
                 SetUpNextWave();
             }
         }
+
     }
 
     public void ForceNextWave()
     {
-        if (AllEnemiesDefeated())//nếu tất cả kẻ thù đã bị đánh bại          
+        if (AllEnemiesDefeated()==false)//nếu tất cả kẻ thù đã bị đánh bại          
         {
             Debug.LogWarning("Cannot force next wave while enemies are still active.");
             return;
         }
+
+        inGameUI.EnableWaveTimer(false); 
         SetUpNextWave();
     }
 
     [ContextMenu("Set Up Next Wave")]
     private void SetUpNextWave()
     {
+
         List<GameObject> newEnemies = newEnemyWave();
         int portalIndex = 0;
         if (newEnemies == null)
@@ -148,7 +158,7 @@ public class WaveManager : MonoBehaviour
         currentGrid.UpdateNavMesh();
     }
 
-   
+
 
     private void UpdateLevelTiles(GridBuilder nextGrid)
     {
@@ -202,6 +212,6 @@ public class WaveManager : MonoBehaviour
             nextCheckTime = Time.time + checkInterval;
             return true;
         }
-        return false; 
+        return false;
     }
 }
