@@ -1,20 +1,18 @@
-
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
     public Enemy currentEnemy;
-    [SerializeField] protected float attackCooldown= 1f; // Time in seconds between attacks
-     protected float lastTimeAttacked;
+    [SerializeField] protected float attackCooldown = 1f; // Time in seconds between attacks
+    protected float lastTimeAttacked;
 
 
     [Header("Tower Settings")]
-    [SerializeField] protected EnemyType enemyPriorityType= EnemyType.None;
+    [SerializeField] protected EnemyType enemyPriorityType = EnemyType.None;
     [SerializeField] protected Transform towerHead;
-    [SerializeField] protected   float rotationSpeed=10f;
-    private bool canRotate ;
+    [SerializeField] protected float rotationSpeed = 10f;
+    private bool canRotate;
     [SerializeField] protected float attackRange = 2.5f;
     [SerializeField] protected LayerMask whatIsEnemy;
 
@@ -48,6 +46,8 @@ public class Tower : MonoBehaviour
 
         rotateTowardsEnemy();
     }
+    public float GetAttackRange() => attackRange;
+    public float GetAttackRadius() => attackRange;
 
     private void LooseTargetIfNeeded()
     {
@@ -61,7 +61,7 @@ public class Tower : MonoBehaviour
         {
             return; // Dynamic target change is disabled
         }
-        if(Time.time > lastTimeCheckedTarget + targetCheckInterval)
+        if (Time.time > lastTimeCheckedTarget + targetCheckInterval)
         {
             lastTimeCheckedTarget = Time.time;
             currentEnemy = FindEnemyWithinRange();
@@ -74,7 +74,7 @@ public class Tower : MonoBehaviour
     }
     protected bool CanAttack()
     {
-        if(currentEnemy == null)
+        if (currentEnemy == null)
         {
             return false; // No enemy to attack
         }
@@ -104,23 +104,23 @@ public class Tower : MonoBehaviour
             }
             else
             {
-                possibleTargets.Add(newEnemy); 
+                possibleTargets.Add(newEnemy);
             }
             possibleTargets.Add(newEnemy);
         }
-    
-       
+
+
         if (priorityTargets.Count > 0)
         {
             return getMostAdvancedEnemy(priorityTargets);
         }
-        if(possibleTargets.Count > 0)
+        if (possibleTargets.Count > 0)
         {
             return getMostAdvancedEnemy(possibleTargets);
         }
-       
+
         return null; // No valid target found 
-        
+
     }
     private Enemy getMostAdvancedEnemy(List<Enemy> targets)
     {
@@ -129,23 +129,23 @@ public class Tower : MonoBehaviour
         foreach (Enemy enemy in targets)
         {
             float remainingDistance = enemy.DistanceToFinishLine();
-            if(remainingDistance < minRemainingDistance)
+            if (remainingDistance < minRemainingDistance)
             {
                 minRemainingDistance = remainingDistance;
                 mostAdvancedEnemy = enemy;
             }
         }
- 
-        return mostAdvancedEnemy;      
+
+        return mostAdvancedEnemy;
     }
     public void EnableRotion(bool enable)
     {
         canRotate = enable;
     }
-   
+
     protected virtual void rotateTowardsEnemy()
     {
-        if(canRotate == false)
+        if (canRotate == false)
         {
             return; // Rotation is disabled
         }
@@ -165,7 +165,7 @@ public class Tower : MonoBehaviour
     {
         return (currentEnemy.CenterPoint() - startPoint.position).normalized;
     }
-   
+
 
     protected virtual void OnDrawGizmos()
     {
