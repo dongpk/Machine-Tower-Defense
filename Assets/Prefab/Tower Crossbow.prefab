@@ -680,10 +680,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8737740909731237567}
   - {fileID: 4869225999562536918}
   - {fileID: 8461150778577849327}
   - {fileID: 5173448351863845605}
-  - {fileID: 8737740909731237567}
   m_Father: {fileID: 7495200936437655113}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2569121973489694822
@@ -1063,7 +1063,7 @@ Transform:
   m_GameObject: {fileID: 4202636860091338938}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1088,7 +1088,7 @@ MonoBehaviour:
   enemyPriorityType: 2
   towerHead: {fileID: 5173448351863845605}
   rotationSpeed: 10
-  attackRange: 3.5
+  attackRange: 3
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 128
