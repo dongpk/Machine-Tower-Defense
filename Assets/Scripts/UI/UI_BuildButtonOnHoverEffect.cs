@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UI_BuildButtonOnHoverEffect : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
+public class UI_BuildButtonOnHoverEffect : MonoBehaviour
 {
     [SerializeField] private float ajustmentSpeed = 10;
     [SerializeField] float showCaseY;
@@ -12,7 +12,7 @@ public class UI_BuildButtonOnHoverEffect : MonoBehaviour,IPointerEnterHandler, I
     private bool canMove;
     private void Update()
     {
-        if(Mathf.Abs(transform.position.y - targetY) > 0.01f&& canMove)
+        if (Mathf.Abs(transform.position.y - targetY) > 0.01f && canMove)
         {
             float newPositionY = Mathf.Lerp(transform.position.y, targetY, ajustmentSpeed * Time.deltaTime);
 
@@ -34,8 +34,17 @@ public class UI_BuildButtonOnHoverEffect : MonoBehaviour,IPointerEnterHandler, I
         transform.position = new Vector3(transform.position.x, defaultY, transform.position.z);
     }
 
-    private void SetTargetY(float newT)=> targetY = newT;
-
-    public void OnPointerEnter(PointerEventData eventData) => SetTargetY(showCaseY);       
-    public void OnPointerExit(PointerEventData eventData) => SetTargetY(defaultY);
+    private void SetTargetY(float newT) => targetY = newT;
+    public void ShowcaseButton(bool showcase)
+    {
+        if (showcase)
+        {
+            SetTargetY(showCaseY);
+        }
+        else
+        {
+            SetTargetY(defaultY);
+        }
+    }
+  
 }
