@@ -4,7 +4,7 @@ using UnityEngine;
 public class UI_InGame : MonoBehaviour
 {
     private UI ui;
-    [SerializeField]private UI_Pause pauseUI;
+    [SerializeField] private UI_Pause pauseUI;
     private UI_Animator uiAnimator;
 
 
@@ -20,16 +20,19 @@ public class UI_InGame : MonoBehaviour
     {
         uiAnimator = GetComponentInParent<UI_Animator>();
         ui = GetComponentInParent<UI>();
-        
+
     }
     private void Update()
     {
         // Kiểm tra null trước khi sử dụng
-        if (Input.GetKeyDown(KeyCode.Escape) )
+        if (Input.GetKeyDown(KeyCode.F10))
         {
             ui.SwitchTo(pauseUI.gameObject);
         }
     }
+    public void ShakeCurrencyUI() => ui.uiAnimator.Shake(currencyText.transform.parent);
+    public void ShakeHealPointUI() => ui.uiAnimator.Shake(healPointText.transform.parent);
+
     public void UpdateHealPointUI(int value, int maxValue)
     {
         int newValue = maxValue - value;
