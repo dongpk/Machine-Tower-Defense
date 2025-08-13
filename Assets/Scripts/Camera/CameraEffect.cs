@@ -27,14 +27,7 @@ public class CameraEffect : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SwitchToMenuView();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SwitchToGameView();
-        }
+     
 
         if (Input.GetKeyDown(KeyCode.V))
         {
